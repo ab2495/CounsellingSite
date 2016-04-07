@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Marksheet</title>
+
+</head>
+<body>
+
+    <form id="resultForm" method="post" action="saveMarksheet.php">
+    <h4>Sem 
+        <input type="number" id="sem">
+    </h4>
+    <input type="hidden" id="noOfSubject" name="subjectNo"/>
+
+        <table id="resultTable" border="2">
+            <tr>
+                <th rowspan="2">Sr No</th>
+                <th rowspan="2">Subject Code</th>
+                <th rowspan="2">Subject Name</th>
+                <th rowspan="2">Grade</th>
+                <th colspan="3">BackLog[Yes(Y) or No(N)]</th>
+            </tr>
+            <tr>
+                <td align="center">M</td>
+                <td align="center">I</td>
+                <td align="center">E</td>
+            </tr>
+        </table>
+        <button type="submit">Save</button>
+    </form>
+    <script src="marksheetPage.js"></script>
+</body>
+</html>
