@@ -39,11 +39,17 @@
             if(!$qrry){
                 echo mysql_error() , "error";
             }
-            else{
-                echo "Done " , $i;
-            }
 
         }
+
+        $updateLastSemInProfile = "update user set last_result_sem = $sem where enrollment = $user ";
+        $qrry = mysql_query($updateLastSemInProfile);
+        if(!$qrry){
+            echo mysql_error() , "error";
+        }
+
+        header("Location: FillResult.php");
+        exit();
 
     }
 

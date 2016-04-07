@@ -63,8 +63,7 @@
     <h2 align="center"> Result </h2>
      <?php
         for($i=1;$i<=$userDetail["last_result_sem"];$i++){
-            $tableId = "sem".$i;
-            $borderValue = 2;
+            $tableId = "Sem".$i;
             echo "<table id=$tableId border='2'>";
             echo "            <tr> ";
             echo "            <th rowspan='2'>Sr No</th> ";
@@ -78,8 +77,27 @@
             echo "                <td align='center'>I</td>";
             echo "                <td align='center'>E</td>";
             echo "            </tr>";
+
+            $qr="select * from marksheet where enrollment = '$user' and semester = '$i' ";
+            $qrry = mysql_query($qr);
+
+            if($noOfSubject = mysql_num_rows($qrry)){
+
+            echo "<h3>Sem ", $i, "</h3>";
+              
+            $srno=1;
+            while($semMarksheet = mysql_fetch_array($qrry)){
+                echo "<tr>";
+                echo "<td>", $srno ,"</td>";
+                for($column = 1; $column <= 6; $column++){
+                    echo "<td>" , $semMarksheet[$column+1] ,"</td>";
+                }
+                echo "</tr>";
+                $srno++;
+            }
+            }
+
             echo "</table>";
-            echo "<script> fillSemResult($i) </script>";
         }
     ?>
 
@@ -110,15 +128,58 @@
 
 <script>
     function fillSemResult(semNo){
+    alert("duf");
         <?php
+            echo "Lets Start";
             $sem = semNo;
+            echo $sem;
             $qr="select * from marksheet where enrollment = '$user' and semester = '$sem' ";
             $qrry = mysql_query($qr);
 
-           if($noOfSubject = mysql_num_rows($qrry)){
-                    $semMarksheet = mysql_fetch_assoc($qrry);
-                }
+           if($noOfSubject = mysql_num_rows($qrry))
+              $semMarksheet = mysql_fetch_assoc($qrry);
         ?>
+
+           var resultTable = document.getElementById("Sem"+semNo);
+           var noSubject = "<?php echo $noOfSubject?>"
+           for(var i=1;i<= noSubject ;i++){
+             var newRow = document.createElement("tr");
+
+            var srnoCol = document.createElement("td");
+            var srno = document.createTextNode(""+i);
+
+            srnoCol.appendChild(srno);
+            newRow.appendChild(srnoCol);
+
+            for(var j=0;j<6;j++){
+                var newCol = document.createElement("td");
+                var inputTag;
+            switch(j){
+                case 0:
+                    inputTag  = document.createTextNode(<?php $semMarksheet["subject_code"]?>);
+                    break;
+                case 1:
+                    inputTag  = document.createTextNode(<?php $semMarksheet["subject_name"]?>);
+                    break;
+                case 2:
+                    inputTag  = document.createTextNode(<?php $semMarksheet["grade"]?>);
+                    break;
+                case 3:
+                    inputTag  = document.createTextNode(<?php $semMarksheet["backlog_m"]?>);
+                    break;
+                case 4:
+                    inputTag  = document.createTextNode(<?php $semMarksheet["backlog_i"]?>);
+                    break;
+                case 5:
+                    inputTag  = document.createTextNode(<?php $semMarksheet["backlog_e"]?>);
+                    break;
+                
+            }
+            newCol.appendChild(inputTag);
+            newRow.appendChild(newCol);
+        }
+        resultTable.appendChild(newRow);
+     }
 
     }
 </script>
