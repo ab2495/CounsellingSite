@@ -1,13 +1,20 @@
 <? php
 
-        $id
-        $name=InterDepSeminar
 
+        $departmentEvent = $_POST["departmentEvent"];
+        $institutionEvent = $_POST["institutionEvent"];
+        $universityEvent = $_POST["universityEvent"];
+        $otherEvent = $_POST["otherEvent"];
 
-         $test1 = mysql_query("insert into seminar where Sr.No="1")
-         $test2 = mysql_query("insert into iste_student where Sr.No="2")
-         $test3 = mysql_query("insert into ie where Sr.No="3")
-         $test4 = mysql_query("insert into sport where Sr.No="4")
-         $test5 = mysql_query("insert into event where Sr.No="5")
+        $test13 = mysql_query("insert into Event values($departmentEvent,$,$,$)")
+        $test14 = mysql_query("insert into Event values($,$institutionEvent,$,$)")
+        $test15 = mysql_query("insert into Event value($,$,$universityEvent,$,)")
+        $test16 = mysql_query("insert into Event values($,$,$,$otherEvent)")
+
+        mysql_query($test13);
+        mysql_query($test14);
+        mysql_query($test15);
+        mysql_query($test16);
+
 
 ?>
