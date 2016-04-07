@@ -10,6 +10,7 @@
         echo mysql_error();
 
     session_start();
+    echo "hello";
 
    if(isset($_POST["sem"])) {
 
@@ -27,16 +28,16 @@
 
             $insertQr = "insert into marksheet values( 
                                 $user,$sem,
-                                $_POST[$var1],
-                                $_POST[$var2],
-                                $_POST[$var3],
-                                $_POST[$var4],
-                                $_POST[$var5],
-                                $_POST[$var6])";
+                                '$_POST[$var1]',
+                                '$_POST[$var2]',
+                                '$_POST[$var3]',
+                                '$_POST[$var4]',
+                                '$_POST[$var5]',
+                                '$_POST[$var6]')";
             
             $qrry = mysql_query($insertQr);
-            if(!qrry){
-                echo "Error";
+            if(!$qrry){
+                echo mysql_error() , "error";
             }
             else{
                 echo "Done " , $i;

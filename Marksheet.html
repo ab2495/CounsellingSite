@@ -8,9 +8,8 @@
 <body>
 
     <form id="resultForm" method="post" action="saveMarksheet.php">
-    <h4>Sem 
-        <input type="number" id="sem">
-    </h4>
+    <h4>Sem</h4>
+    <input type="number" id="sem" name="sem" maxlength="1">
     <input type="hidden" id="noOfSubject" name="subjectNo"/>
 
         <table id="resultTable" border="2">
@@ -27,8 +26,8 @@
                 <td align="center">E</td>
             </tr>
         </table>
+        <script src="marksheetPage.js"></script>
         <button type="submit">Save</button>
     </form>
-    <script src="marksheetPage.js"></script>
 </body>
 </html>

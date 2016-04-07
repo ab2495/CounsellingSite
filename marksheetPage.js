@@ -32,7 +32,7 @@ function createTable(no){
             inputTag.setAttribute("name", i + "-" + j);
             switch(j){
                 case 0:
-                    inputTag.setAttribute("type","number");
+                    inputTag.setAttribute("type","text");
                     break;
                 case 2:
                     inputTag.setAttribute("maxLength","2");
