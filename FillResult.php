@@ -113,7 +113,7 @@
 
             <p>
                <h2 align="center"> For Activity form ?
-                <a href ="ActivityForm.html">Click Here.</a><br>
+                <a href ="ActivityForm.php">Click Here.</a><br>
                 </h2>
             </p>
             <br>
