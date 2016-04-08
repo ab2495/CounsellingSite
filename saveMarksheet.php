@@ -10,7 +10,6 @@
         echo mysql_error();
 
     session_start();
-    echo "hello";
 
    if(isset($_POST["sem"])) {
 
