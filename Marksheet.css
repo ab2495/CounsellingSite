@@ -1,0 +1,16 @@
+.btn-block{
+    width: 25%;
+    display: block;
+    margin: auto;
+}
+body {
+    background: whitesmoke;
+    color: #122b40;
+}
+
+table{
+    color: mediumvioletred;
+}
+input{
+    margin: auto;
+}

@@ -8,13 +8,16 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Activity Form</title>
+    <title>Gaurav Jindal</title>
 
     <!-- Bootstrap core CSS -->
     <link href="./css/bootstrap.min.css" rel="stylesheet">
-    <link href="Marksheet.css" rel="stylesheet">
+
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <!--<link href="./css/ie10-viewport-bug-workaround.css" rel="stylesheet">-->
+
+    <!-- Custom styles for this template -->
+    <link href="FillResult.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="./js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -27,27 +30,45 @@
     <![endif]-->
 </head>
 <body>
-    <header><h1 align="center">BVM Counselling Site</h1></header>
-    <h3>Enter Semester</h3>
-    <input type="number" id="sem" name="sem" maxlength="1">
-    <input type="hidden" id="noOfSubject" name="subjectNo"/><br><br>
-    <form id="resultForm" method="post" action="saveMarksheet.php">
-        <table class="table table-bordered text-center" id="resultTable" border="2">
-            <tr>
-                <th rowspan="2">Sr No</th>
-                <th rowspan="2">Subject Code</th>
-                <th rowspan="2">Subject Name</th>
-                <th rowspan="2">Final Grade</th>
-                <th colspan="3">BackLog[Yes(Y) or No(N)]</th>
-            </tr>
-            <tr>
-                <td align="center">M</td>
-                <td align="center">I</td>
-                <td align="center">E</td>
-            </tr>
-        </table>
-        <script src="marksheetPage.js"></script>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Save</button>
-    </form>
+    <h1 align="center">
+         BVM Counselling Site
+    </h1>
+    <button class="btn btn-lg btn-primary btn-block1" type="submit">Sign Out</button>
+    <div>
+        <p>
+            <h3 align="center">
+                Welcome,Gaurav Jindal<br>
+                130070107025<br>
+            </h3>
+        <br>
+        <br>
+    </div>
+    <h2 align="center"> Result </h2>
+    <table>
+        <tr>
+            <td>
+
+            </td>
+        </tr>
+    </table>
+
+    <div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+        <form>
+            <hr>
+
+            <p>
+               <h2 align="center"> For Activity form ?
+                <a href ="ActivityForm.html">Click Here.</a><br>
+                </h2>
+            </p>
+            <br>
+
+            <button  class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+            <button class="btn btn-lg btn-primary btn-block" type="reset">Reset</button>
+        </form>
+    </div>
+
+
 </body>
 </html>

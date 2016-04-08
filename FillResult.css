@@ -20,6 +20,10 @@ body {
     width: 22%;
     margin: auto;
 }
+
+.btn-block1{
+    margin-left: 90%;
+}
 h1{
     font-family: "Calibri";
     font-weight:bold;
