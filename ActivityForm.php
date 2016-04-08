@@ -41,7 +41,7 @@
 </head>
 <body>
 <h1 align="center"> Student Activity Form</h1>
-<form id="ActivityForm" method="post" action="saveActivityForm.php" onsubmit="addCounters()">
+<form id="ActivityForm" method="post" action="saveActivityForm.php" onsubmit=" return addCountersAndCheck()">
 <table class="table table-bordered text-center">
     <tr>
         <th rowspan="2">Sr.No</th>
@@ -176,8 +176,11 @@
         $journalResult = array("","","","","","");
         $noOfJournal = 1;
         $journalQuery = mysql_query("select * from research_paper where enrollment = $user order by sr_no");
-        if($noOfJournal = mysql_num_rows($journalQuery)){
+        if(($noOfJournal = mysql_num_rows($journalQuery))!=0){
             $journalResult = mysql_fetch_array($journalQuery);
+        }
+        else{
+            $noOfJournal=1;
         }
          ?>
 
@@ -226,8 +229,12 @@
         $competitiveResult = array("","","","","","");
         $noOfCompetitive = 1;
         $competitiveQuery = mysql_query("select * from competitive_exam where enrollment = $user order by sr_no");
-        if($noOfCompetitive = mysql_num_rows($competitiveQuery)){
+        if(($noOfCompetitive = mysql_num_rows($competitiveQuery))!=0){
             $competitiveResult = mysql_fetch_array($competitiveQuery);
+        }
+        
+        else{
+            $noOfCompetitive=1;
         }
          ?>
 
@@ -278,8 +285,12 @@
         $jobResult = array("","","","","","");
         $noOfJob = 1;
         $jobQuery = mysql_query("select * from placement where enrollment = $user order by sr_no");
-        if($noOfJob = mysql_num_rows($jobQuery)){
+        if(($noOfJob = mysql_num_rows($jobQuery))!=0){
             $jobResult = mysql_fetch_array($jobQuery);
+        }
+        
+        else{
+            $noOfJob=1;
         }
          ?>
 
@@ -333,7 +344,10 @@
             var newCol = document.createElement("td");
             var inputTag = document.createElement("input");
             inputTag.setAttribute("name", "journo-" + jCount + "-" + j);
-            inputTag.setAttribute("type", "text");
+            if (j == 3)
+                inputTag.setAttribute("type", "date");
+            else
+                inputTag.setAttribute("type", "text");
 
             newCol.appendChild(inputTag);
             newRow.appendChild(newCol);
@@ -354,7 +368,7 @@
 
         var newCol = document.createElement("td");
         var inputTag = document.createElement("input");
-        inputTag.setAttribute("type", "date");
+        inputTag.setAttribute("type", "text");
         newCol.appendChild(inputTag);
         inputTag.setAttribute("name", "comp-" + cCount + "-" + 0);
         newRow.appendChild(newCol);
@@ -395,7 +409,7 @@
         jobCount++;
     }
 
-    function addCounters() {
+    function addCountersAndCheck() {
         var form = document.getElementById("ActivityForm");
 
         var jCountTag = document.createElement("input");
@@ -415,6 +429,61 @@
         jobCountTag.setAttribute("type", "hidden");
         jobCountTag.value = jobCount;
         form.appendChild(jobCountTag);
+
+        var journoLeftEmpty = 0;
+        for (var journoField = 1; journoField < jCount; journoField++) {
+
+            var field1 = form.elements["journo-" + journoField + "-1"];
+            var field2 = form.elements["journo-" + journoField + "-2"];
+            var field3 = form.elements["journo-" + journoField + "-3"];
+
+            if (field1.value == "" && field2.value == "" && field3.value == "") {
+                journoLeftEmpty = 1;
+            }
+            else {
+                if (journoLeftEmpty == 1) {
+                    alert("Enter Journal Fields in order! Don't Skip any row.");
+                    return false;
+                }
+            }
+        }
+
+        var compLeftEmpty = 0;
+        for (var compField = 1; compField < cCount; compField++) {
+            var field0 = form.elements["comp-" + compField + "-0"];
+            var field1 = form.elements["comp-" + compField + "-1"];
+            var field2 = form.elements["comp-" + compField + "-2"];
+            var field3 = form.elements["comp-" + compField + "-3"];
+
+            if (field0.value == "" && field1.value == "" && field2.value == "" && field3.value == "") {
+                compLeftEmpty = 1;
+            }
+            else {
+                if (compLeftEmpty == 1) {
+                    alert("Enter Competitive Exam Fields in order! Don't Skip any row.");
+                    return false;
+                }
+            }
+        }
+
+        var jobLeftEmpty = 0;
+        for (var jobField = 1; jobField < jobCount; jobField++) {
+
+            var field1 = form.elements["job-" + jobField + "-1"];
+            var field2 = form.elements["job-" + jobField + "-2"];
+            var field3 = form.elements["job-" + jobField + "-3"];
+
+            if (field1.value == "" && field2.value == "" && field3.value == "") {
+                jobLeftEmpty = 1;
+            }
+            else {
+                if (jobLeftEmpty == 1) {
+                    alert("Enter Placement Fields in order! Don't Skip any row.");
+                    return false;
+                }
+            }
+        }
+        return true;
 
     }
 </script>

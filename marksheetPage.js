@@ -48,5 +48,4 @@ function createTable(no){
         }
         resultTable.appendChild(newRow);
     }
-
 }

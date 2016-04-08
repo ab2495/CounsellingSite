@@ -104,7 +104,9 @@
    
 
     <form action="Marksheet.html" method="get">
-        <button class="btn btn-lg btn-primary btn-block" type="submit" >Add Result</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" >
+            Add Sem <?php  $ans = $userDetail["last_result_sem"] + 1; echo $ans; ?> Result
+        </button>
     </form>
     <div>
         
