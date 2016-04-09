@@ -61,118 +61,6 @@
 <body>
 <h1 align="center"> Student Activity Form</h1>
 <form id="ActivityForm" method="post" action="saveActivityForm.php" onsubmit=" return addCountersAndCheck()">
-<table class="table table-bordered text-center">
-    <tr>
-        <th rowspan="2">Sr.No</th>
-        <th rowspan="2">Activity</th>
-        <th rowspan="2">Detail</th>
-        <th colspan="4">Reorganization/Award received. Give Details of each</th>
-    </tr>
-    <tr>
-        <th>
-            Inter-Department
-        </th>
-        <th>
-            Inter-Institution
-        </th>
-        <th>
-            Inter-University
-        </th>
-        <th>
-            Other
-        </th>
-    </tr>
-    <?php 
-        $seminarResult = array("","","","","","");
-        $seminarQuery = mysql_query("select * from awards where event = 'Seminar' and enrollment = $user");
-        if(mysql_num_rows($seminarQuery)){
-            $seminarResult = mysql_fetch_array($seminarQuery);
-        }
-    ?>
-    <tr>
-        <td>1</td>
-        <td>Seminar/Workshop<br>Have you enrolled?<br></td>
-        <td>Title/Date</td>
-        <td><input type="text" name="departmentSeminar" value="<?php echo $seminarResult[2] ?>"></td>
-        <td><input type="text" name="instituteSeminar" value="<?php echo $seminarResult[3] ?>"></td>
-        <td><input type="text" name="universitySeminar" value="<?php echo $seminarResult[4] ?>"></td>
-        <td><input type="text" name="otherSeminar" value="<?php echo $seminarResult[5] ?>"></td>
-    </tr>
-
-    <?php 
-        $isteResult = array("","","","","","");
-        $isteQuery = mysql_query("select * from awards where event = 'ISTE' and enrollment = $user");
-        if(mysql_num_rows($isteQuery)){
-            $isteResult = mysql_fetch_array($isteQuery);
-        }
-    ?>
-
-    <tr>
-        <td>2</td>
-        <td>ISTE Student Chapter<br>Have you enrolled?<br></td>
-        <td>Activity</td>
-        <td><input type="text" name="departmentISTE" value="<?php echo $isteResult[2] ?>"></td>
-        <td><input type="text" name="instituteISTE" value="<?php echo $isteResult[3] ?>"></td>
-        <td><input type="text" name="universityISTE" value="<?php echo $isteResult[4] ?>"></td>
-        <td><input type="text" name="otherISTE" value="<?php echo $isteResult[5] ?>"></td>
-    </tr>
-
-     <?php 
-        $ieResult = array("","","","","","");
-        $ieQuery = mysql_query("select * from awards where event = 'IE' and enrollment = $user");
-        if(mysql_num_rows($ieQuery)){
-            $ieResult = mysql_fetch_array($ieQuery);
-        }
-    ?>
-
-    <tr>
-        <td>3</td>
-        <td>IE/ISTE Convention<br>Have you enrolled?<br></td>
-        <td>Activity</td>
-        <td><input type="text" name="departmentIE" value="<?php echo $ieResult[2] ?>"></td>
-        <td><input type="text" name="instituteIE" value="<?php echo $ieResult[3] ?>"></td>
-        <td><input type="text" name="universityIE" value="<?php echo $ieResult[4] ?>"></td>
-        <td><input type="text" name="otherIE" value="<?php echo $ieResult[5] ?>"></td>
-    </tr>
-
-     <?php 
-        $sportResult = array("","","","","","");
-        $sportQuery = mysql_query("select * from awards where event = 'Sport' and enrollment = $user");
-        if(mysql_num_rows($sportQuery)){
-            $sportResult = mysql_fetch_array($sportQuery);
-        }
-    ?>
-
-    <tr>
-        <td>4</td>
-        <td>Sports<br>Have you enrolled?<br></td>
-        <td>Name of the Sport/Position/Year</td>
-        <td><input type="text" name="departmentSport" value="<?php echo $sportResult[2] ?>"></td>
-        <td><input type="text" name="instituteSport" value="<?php echo  $sportResult[3] ?>"></td>
-        <td><input type="text" name="universitySport" value="<?php echo $sportResult[4] ?>"></td>
-        <td><input type="text" name="otherSport" value="<?php echo $sportResult[5] ?>"></td>
-    </tr>
-
-    <?php 
-        $eventResult = array("","","","","","");
-        $eventQuery = mysql_query("select * from awards where event = 'Event' and enrollment = $user");
-        if(mysql_num_rows($eventQuery)){
-            $eventResult = mysql_fetch_array($eventQuery);
-        }
-    ?>
-
-    <tr>
-        <td>5</td>
-        <td>Youth/Cultural/Technical/Festival<br>Have you enrolled?<br></td>
-        <td>Event name/Position/Year</td>
-        <td><input type="text" name="departmentEvent" value="<?php echo $eventResult[2] ?>"></td>
-        <td><input type="text" name="instituteEvent" value="<?php echo $eventResult[3] ?>"></td>
-        <td><input type="text" name="universityEvent" value="<?php echo $eventResult[4] ?>"></td>
-        <td><input type="text" name="otherEvent" value="<?php echo $eventResult[5] ?>"></td>
-    </tr>
-</table>
-<br><br>
-
 <div>
 
     <p>
@@ -224,7 +112,7 @@
                 echo "<td><input type='text' name='seminar-",$otherseminar,"-2' value='", $seminarResult[3] ,"'></td>";
                 echo "<td><input type='date' name='seminar-",$otherseminar,"-3' value='", $seminarResult[4] ,"'></td>";
                 echo "<td><input type='date' name='seminar-",$otherseminar,"-4' value='", $seminarResult[5] ,"'></td>";
-                addDropDown($otherseminar,$seminarResult[6]);
+                addDropDown($otherseminar,$seminarResult[6],'seminar');
                 echo "<td><input type='file' name='seminar-",$otherseminar,"-6' value='", $seminarResult[7] ,"'></td>";
                 echo "</tr>";
             }
@@ -285,7 +173,7 @@
                 echo "<td><input type='text' name='iste-",$otheriste,"-2' value='", $isteResult[3] ,"'></td>";
                 echo "<td><input type='date' name='iste-",$otheriste,"-3' value='", $isteResult[4] ,"'></td>";
                 echo "<td><input type='date' name='iste-",$otheriste,"-4' value='", $isteResult[5] ,"'></td>";
-                addDropDown($otheriste,$isteResult[6]);
+                addDropDown($otheriste,$isteResult[6],'iste');
                 echo "<td><input type='file' name='iste-",$otheriste,"-6' value='", $isteResult[7] ,"'></td>";
                 echo "<td><input type='text' name='iste-",$otheriste,"-7' value='", $isteResult[8] ,"'></td>";
                 echo "</tr>";
@@ -347,7 +235,7 @@
                 echo "<td><input type='text' name='ie-",$otherie,"-2' value='", $ieResult[3] ,"'></td>";
                 echo "<td><input type='date' name='ie-",$otherie,"-3' value='", $ieResult[4] ,"'></td>";
                 echo "<td><input type='date' name='ie-",$otherie,"-4' value='", $ieResult[5] ,"'></td>";
-                addDropDown($otherie,$ieResult[6]);
+                addDropDown($otherie,$ieResult[6],'ie');
                 echo "<td><input type='file' name='ie-",$otherie,"-6' value='", $ieResult[7] ,"'></td>";
                 echo "<td><input type='text' name='ie-",$otherie,"-7' value='", $ieResult[8] ,"'></td>";
                 echo "</tr>";
@@ -410,7 +298,7 @@
                 echo "<td><input type='text' name='sport-",$othersport,"-2' value='", $sportResult[3] ,"'></td>";
                 echo "<td><input type='date' name='sport-",$othersport,"-3' value='", $sportResult[4] ,"'></td>";
                 echo "<td><input type='date' name='sport-",$othersport,"-4' value='", $sportResult[5] ,"'></td>";
-                addDropDown($othersport,$sportResult[6]);
+                addDropDown($othersport,$sportResult[6],'sport');
                 echo "<td><input type='file' name='sport-",$othersport,"-6' value='", $sportResult[7] ,"'></td>";
                 echo "<td><input type='text' name='sport-",$othersport,"-7' value='", $sportResult[8] ,"'></td>";
                 echo "</tr>";
@@ -473,7 +361,7 @@
                 echo "<td><input type='text' name='event-",$otherevent,"-2' value='", $eventResult[3] ,"'></td>";
                 echo "<td><input type='date' name='event-",$otherevent,"-3' value='", $eventResult[4] ,"'></td>";
                 echo "<td><input type='date' name='event-",$otherevent,"-4' value='", $eventResult[5] ,"'></td>";
-                addDropDown($otherevent,$eventResult[6]);
+                addDropDown($otherevent,$eventResult[6],'event');
                 echo "<td><input type='file' name='event-",$otherevent,"-6' value='", $eventResult[7] ,"'></td>";
                 echo "<td><input type='text' name='event-",$otherevent,"-7' value='", $eventResult[8] ,"'></td>";
                 echo "</tr>";
