@@ -31,7 +31,8 @@
                 else
                     $col7 = "";
                 
-                $insertQr = "insert into activity values( 
+                if($col1 =="" && $col2 ==""){
+                    $insertQr = "insert into activity values( 
                                 $user,$givenRow,
                                 '$col1','$col2','$col3','$col4','$col5','$col6','$col7','$typeArray[$act]')
                                 on duplicate key update 
@@ -44,8 +45,9 @@
                                 prize = '$col7' 
                                 ";
             
-                $qrry = mysql_query($insertQr);
-                echo mysql_error() , "<br>";
+                    $qrry = mysql_query($insertQr);
+                    echo mysql_error() , "<br>";
+                }
             }
         }
 

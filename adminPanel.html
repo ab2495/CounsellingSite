@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title></title>
+    </head>
+    <body>
+        <form method="post" action="adminPanel.php" onsubmit="return check()">
+            Enter Enrollemnt:
+            <input type="number" name="enrollment" id="enroll"/>
+
+            <button type="submit" >Find</button>
+        </form>
+    </body>
+    <script>
+        function check() {
+            var textbox = document.getElementById("enroll");
+            if (textbox.value == "") {
+                alert("Enter Enrollment Number");
+                return false;
+            }
+            else if (textbox.value.length != 12) {
+                alert("Enter Proper Enrollment Number");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</html>
