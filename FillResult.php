@@ -104,7 +104,9 @@
    
 
     <form action="Marksheet.html" method="get">
-        <button class="btn btn-lg btn-primary btn-block" type="submit" >Add Result</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" >
+            Add Sem <?php  $ans = $userDetail["last_result_sem"] + 1; echo $ans; ?> Result
+        </button>
     </form>
     <div>
         
@@ -113,7 +115,7 @@
 
             <p>
                <h2 align="center"> For Activity form ?
-                <a href ="ActivityForm.html">Click Here.</a><br>
+                <a href ="ActivityForm.php">Click Here.</a><br>
                 </h2>
             </p>
             <br>
@@ -126,61 +128,4 @@
 
 </body>
 
-<script>
-    function fillSemResult(semNo){
-    alert("duf");
-        <?php
-            echo "Lets Start";
-            $sem = semNo;
-            echo $sem;
-            $qr="select * from marksheet where enrollment = '$user' and semester = '$sem' ";
-            $qrry = mysql_query($qr);
-
-           if($noOfSubject = mysql_num_rows($qrry))
-              $semMarksheet = mysql_fetch_assoc($qrry);
-        ?>
-
-           var resultTable = document.getElementById("Sem"+semNo);
-           var noSubject = "<?php echo $noOfSubject?>"
-           for(var i=1;i<= noSubject ;i++){
-             var newRow = document.createElement("tr");
-
-            var srnoCol = document.createElement("td");
-            var srno = document.createTextNode(""+i);
-
-            srnoCol.appendChild(srno);
-            newRow.appendChild(srnoCol);
-
-            for(var j=0;j<6;j++){
-                var newCol = document.createElement("td");
-                var inputTag;
-            switch(j){
-                case 0:
-                    inputTag  = document.createTextNode(<?php $semMarksheet["subject_code"]?>);
-                    break;
-                case 1:
-                    inputTag  = document.createTextNode(<?php $semMarksheet["subject_name"]?>);
-                    break;
-                case 2:
-                    inputTag  = document.createTextNode(<?php $semMarksheet["grade"]?>);
-                    break;
-                case 3:
-                    inputTag  = document.createTextNode(<?php $semMarksheet["backlog_m"]?>);
-                    break;
-                case 4:
-                    inputTag  = document.createTextNode(<?php $semMarksheet["backlog_i"]?>);
-                    break;
-                case 5:
-                    inputTag  = document.createTextNode(<?php $semMarksheet["backlog_e"]?>);
-                    break;
-                
-            }
-            newCol.appendChild(inputTag);
-            newRow.appendChild(newCol);
-        }
-        resultTable.appendChild(newRow);
-     }
-
-    }
-</script>
 </html>

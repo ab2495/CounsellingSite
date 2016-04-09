@@ -10,13 +10,20 @@
         echo mysql_error();
 
     session_start();
-    echo "hello";
 
-   if(isset($_POST["sem"])) {
+   if(isset($_POST["subjectNo"])) {
 
-        $sem = $_POST["sem"];
         $user = $_SESSION["user"];
         $noOfSubject = $_POST["subjectNo"];
+
+        $qr="select * from user where enrollment = '$user'";
+        $qrry = mysql_query($qr);
+
+        if(mysql_num_rows($qrry)){
+            $userDetail = mysql_fetch_assoc($qrry);
+        }
+        
+        $sem = $userDetail["last_result_sem"] + 1;
 
         for($i=1;$i<$noOfSubject;$i++){
             $var1 = $i."-0";
