@@ -583,7 +583,7 @@
                 echo "<td><input type='text' name='comp-",$otherJourno,"-0' value='", $competitiveResult[2] ,"'></td>";
                 echo "<td><input type='text' name='comp-",$otherJourno,"-1' value='", $competitiveResult[3] ,"'></td>";
                 echo "<td><input type='text' name='comp-",$otherJourno,"-2' value='", $competitiveResult[4] ,"'></td>";
-                echo "<td><input type='text' name='comp-",$otherJourno,"-4' value='", $competitiveResult[5] ,"'></td>";
+                echo "<td><input type='text' name='comp-",$otherJourno,"-3' value='", $competitiveResult[5] ,"'></td>";
                 echo "</tr>";
             }
         ?>
@@ -754,8 +754,8 @@
             if (j == 5) {
                 var inputTag = document.createElement("select");
 
-                var val = ["Department","Institute","University","Other"];
-                var name = ["Inter-Department","Inter-Institute","Inter-University","Other"];
+                var val = ["Department", "Institute", "University", "Other"];
+                var name = ["Inter-Department", "Inter-Institute", "Inter-University", "Other"];
 
                 for (var i = 0; i < val.length; i++) {
                     var option = document.createElement("option");
@@ -803,8 +803,8 @@
             if (j == 5) {
                 var inputTag = document.createElement("select");
 
-                var val = ["Department","Institute","University","Other"];
-                var name = ["Inter-Department","Inter-Institute","Inter-University","Other"];
+                var val = ["Department", "Institute", "University", "Other"];
+                var name = ["Inter-Department", "Inter-Institute", "Inter-University", "Other"];
 
                 for (var i = 0; i < val.length; i++) {
                     var option = document.createElement("option");
@@ -852,8 +852,8 @@
             if (j == 5) {
                 var inputTag = document.createElement("select");
 
-                var val = ["Department","Institute","University","Other"];
-                var name = ["Inter-Department","Inter-Institute","Inter-University","Other"];
+                var val = ["Department", "Institute", "University", "Other"];
+                var name = ["Inter-Department", "Inter-Institute", "Inter-University", "Other"];
 
                 for (var i = 0; i < val.length; i++) {
                     var option = document.createElement("option");
@@ -900,8 +900,8 @@
             if (j == 5) {
                 var inputTag = document.createElement("select");
 
-                var val = ["Department","Institute","University","Other"];
-                var name = ["Inter-Department","Inter-Institute","Inter-University","Other"];
+                var val = ["Department", "Institute", "University", "Other"];
+                var name = ["Inter-Department", "Inter-Institute", "Inter-University", "Other"];
 
                 for (var i = 0; i < val.length; i++) {
                     var option = document.createElement("option");
@@ -948,8 +948,8 @@
             if (j == 5) {
                 var inputTag = document.createElement("select");
 
-                var val = ["Department","Institute","University","Other"];
-                var name = ["Inter-Department","Inter-Institute","Inter-University","Other"];
+                var val = ["Department", "Institute", "University", "Other"];
+                var name = ["Inter-Department", "Inter-Institute", "Inter-University", "Other"];
 
                 for (var i = 0; i < val.length; i++) {
                     var option = document.createElement("option");
@@ -985,23 +985,19 @@
     function addCountersAndCheck() {
         var form = document.getElementById("ActivityForm");
 
-        var jCountTag = document.createElement("input");
-        jCountTag.setAttribute("name", "jCounter");
-        jCountTag.setAttribute("type", "hidden");
-        jCountTag.value = jCount;
-        form.appendChild(jCountTag);
+        var attributeName = ["seminarCounter", "isteCounter", "ieCounter", "sportCounter", "eventCounter",
+                             "jCounter", "cCounter", "jobCounter"];
 
-        var cCountTag = document.createElement("input");
-        cCountTag.setAttribute("name", "cCounter");
-        cCountTag.setAttribute("type", "hidden");
-        cCountTag.value = cCount;
-        form.appendChild(cCountTag);
+        var valueArray = [seminarCount, isteCount, ieCount, sportCount, eventCount, jCount, cCount, jobCount];
 
-        var jobCountTag = document.createElement("input");
-        jobCountTag.setAttribute("name", "jobCounter");
-        jobCountTag.setAttribute("type", "hidden");
-        jobCountTag.value = jobCount;
-        form.appendChild(jobCountTag);
+        for (var i = 0; i < attributeName.length; i++) {
+
+            var Tag = document.createElement("input");
+            Tag.setAttribute("name", attributeName[i]);
+            Tag.setAttribute("type", "hidden");
+            Tag.value = valueArray[i];
+            form.appendChild(Tag);
+        }
 
         var journoLeftEmpty = 0;
         for (var journoField = 1; journoField < jCount; journoField++) {
@@ -1056,6 +1052,37 @@
                 }
             }
         }
+
+        var tagName = ["seminar", "iste", "ie", "sport", "event"];
+
+        for (act = 0; act < tagName.length; act++) {
+            var LeftEmpty = 0;
+            for (var Field = 1; Field < valueArray[act]; Field++) {
+                var field1 = form.elements[tagName[act] + "-" + Field + "-1"];
+                var field2 = form.elements[tagName[act] + "-" + Field + "-2"];
+                var field3 = form.elements[tagName[act] + "-" + Field + "-3"];
+                var field4 = form.elements[tagName[act] + "-" + Field + "-4"];
+                var field6 = form.elements[tagName[act] + "-" + Field + "-6"];
+                if (act != 0) {
+                    var field7 = form.elements[tagName[act] + "-" + Field + "-7"];
+                }
+
+                if (field1.value == "" && field2.value == "" && field3.value == "" &&
+                    field4.value == "" &&  field6.value == "") {
+                    if (act == 0)
+                        LeftEmpty = 1;
+                    else if (field7.value == "")
+                        LeftEmpty = 1;
+                }
+                else {
+                    if (LeftEmpty == 1) {
+                        alert("Enter Fields in order! Don't Skip any row.");
+                        return false;
+                    }
+                }
+            }
+        }
+
         return true;
 
     }

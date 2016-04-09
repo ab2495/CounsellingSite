@@ -11,116 +11,42 @@
             session_start();
             $user = $_SESSION["user"];
             
-            $departmentSeminar = $_POST["departmentSeminar"];
-            $instituteSeminar = $_POST["instituteSeminar"];
-            $universitySeminar = $_POST["universitySeminar"];
-            $otherSeminar = $_POST["otherSeminar"];
-            $event ="Seminar";
+        $tagName = array("seminar", "iste", "ie", "sport", "event");
+        $counter = array($_POST["seminarCounter"],$_POST["isteCounter"],$_POST["ieCounter"],
+                         $_POST["sportCounter"],$_POST["eventCounter"]);
+        $typeArray = array("Seminar","ISTE","IE","Sport","Event");
 
-            if(!($departmentSeminar == "" && $instituteSeminar == "" &&  $universitySeminar == "" && $otherSeminar == "")){
+        for($act = 0; $act < count($tagName) ; $act++){
 
-                $seminarDetail = "insert into awards values($user, '$event',
-                        '$departmentSeminar','$instituteSeminar',
-                        '$universitySeminar','$otherSeminar') 
-                        on duplicate key update 
-                        department = '$departmentSeminar' ,
-                        institute = '$instituteSeminar' ,
-                        university = '$universitySeminar' ,
-                        other = '$otherSeminar' 
-                        ";
-
-                mysql_query($seminarDetail);
-                echo mysql_error() , "<br>" , "<br>";
-            }
-
-
-            $departmentISTE = $_POST["departmentISTE"];
-            $instituteISTE = $_POST["instituteISTE"];
-            $universityISTE = $_POST["universityISTE"];
-            $otherISTE = $_POST["otherISTE"];
-            $event ="ISTE";
-
-            if(!($departmentISTE == "" && $instituteISTE == "" &&  $universityISTE = "" && $otherISTE == "")){
-                $ISTEDetail = "insert into awards values($user, '$event',
-                        '$departmentISTE','$instituteISTE',
-                        '$universityISTE','$otherISTE')
-                        on duplicate key update 
-                        department = '$departmentISTE' ,
-                        institute = '$instituteISTE' ,
-                        university = '$universityISTE' ,
-                        other = '$otherISTE'
-                        ";
+            for($givenRow = 1; $givenRow < $counter[$act] ; $givenRow++){
+                $col1 = $_POST[$tagName[$act]."-".$givenRow."-1"];
+                $col2 = $_POST[$tagName[$act]."-".$givenRow."-2"];
+                $col3 = $_POST[$tagName[$act]."-".$givenRow."-3"];
+                $col4 = $_POST[$tagName[$act]."-".$givenRow."-4"];
+                $col5 = $_POST[$tagName[$act]."-".$givenRow."-5"];
+                $col6 = $_POST[$tagName[$act]."-".$givenRow."-6"];
+                
+                if($act != 0)
+                    $col7 = $tagName[$act]."-"+$givenRow."-7";
+                else
+                    $col7 = "";
+                
+                $insertQr = "insert into activity values( 
+                                $user,$givenRow,
+                                '$col1','$col2','$col3','$col4','$col5','$col6','$col7','$typeArray[$act]')
+                                on duplicate key update 
+                                title = '$col1' ,
+                                place = '$col2' ,
+                                start_date = '$col3' ,
+                                end_date = '$col4' ,
+                                level = '$col5' ,
+                                certificate = '$col6' ,
+                                prize = '$col7' 
+                                ";
             
-
-                mysql_query($ISTEDetail);
+                $qrry = mysql_query($insertQr);
                 echo mysql_error() , "<br>";
             }
-
-            $departmentIE = $_POST["departmentIE"];
-            $instituteIE = $_POST["instituteIE"];
-            $universityIE = $_POST["universityIE"];
-            $otherIE = $_POST["otherIE"];
-            $event ="IE";
-
-            if(!($departmentIE == "" && $instituteIE == "" &&  $universityIE == "" && $otherIE == "")){
-                $IEDetail = "insert into awards values($user, '$event', 
-                        '$departmentIE','$instituteIE',
-                        '$universityIE','$otherIE')
-                        on duplicate key update 
-                        department = '$departmentIE' ,
-                        institute = '$instituteIE' ,
-                        university = '$universityIE' ,
-                        other = '$otherIE'
-                        ";
-            
-                mysql_query($IEDetail);
-                echo mysql_error() , "<br>";
-            }
-
-            $departmentSport = $_POST["departmentSport"];
-            $instituteSport = $_POST["instituteSport"];
-            $universitySport = $_POST["universitySport"];
-            $otherSport = $_POST["otherSport"];
-            $event ="Sport";
-
-            if(!($departmentSport == "" && $instituteSport == "" &&  $universitySport =="" && $otherSport == "")){
-                $SportDetail = "insert into awards values($user, '$event',
-                        '$departmentSport','$instituteSport',
-                        '$universitySport','$otherSport')
-                        on duplicate key update 
-                        department = '$departmentSport' ,
-                        institute = '$instituteSport' ,
-                        university = '$universitySport' ,
-                        other = '$otherSport'
-                        ";
-            
-
-                mysql_query($SportDetail);
-                echo mysql_error() , "<br>";
-            }
-
-        $departmentEvent = $_POST["departmentEvent"];
-        $instituteEvent = $_POST["instituteEvent"];
-        $universityEvent = $_POST["universityEvent"];
-        $otherEvent = $_POST["otherEvent"];
-        $event ="Event";
-
-
-        if(!($departmentEvent == "" && $instituteEvent == "" &&  $universityEvent =="" && $otherEvent == "")){
-            $EventDetail = "insert into awards values($user, '$event',
-                        '$departmentEvent','$instituteEvent',
-                        '$universityEvent','$otherEvent')
-                        on duplicate key update 
-                        department = '$departmentEvent' ,
-                        institute = '$instituteEvent' ,
-                        university = '$universityEvent' ,
-                        other = '$otherEvent'
-                        ";
-            
-
-            mysql_query($EventDetail);
-            echo mysql_error() , "<br>";
-
         }
 
         for($journals = 1; $journals < $_POST["jCounter"] ;$journals++){
@@ -198,5 +124,5 @@
 
          header("Location: FillResult.php");
         exit();
-        
+
 ?>
