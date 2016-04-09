@@ -12,7 +12,7 @@
 
     function addDropDown($no,$selected,$type){
         echo "<td>";
-        echo "<select name=\"",$type,"-",$no,"-5\">";
+        echo "<select class = 'form-control' name=\"",$type,"-",$no,"-5\">";
         echo "<option value=\"Department\" ";
         if($selected == "Department") echo " selected='selected'"; 
         echo ">Inter-Department</option>";
@@ -43,7 +43,6 @@
 
     <!-- Bootstrap core CSS -->
     <link href="./css/bootstrap.min.css" rel="stylesheet">
-    <link href="ActivityForm.css" rel="stylesheet">
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <!--<link href="./css/ie10-viewport-bug-workaround.css" rel="stylesheet">-->
@@ -86,7 +85,7 @@
          <?php 
         $seminarResult = array("","","","","","","","","");
         $noOfseminar = 1;
-        $seminarQuery = mysql_query("select * from activity where enrollment = $user order by sr_no");
+        $seminarQuery = mysql_query("select * from activity where enrollment = $user and event = 'Seminar' order by sr_no");
         if(($noOfseminar = mysql_num_rows($seminarQuery))!=0){
             $seminarResult = mysql_fetch_array($seminarQuery);
         }
@@ -97,24 +96,24 @@
 
         <tr>
             <td>1</td>
-            <td><input type="text" name="seminar-1-1" value="<?php echo $seminarResult[2] ?>"></td>
-            <td><input type="text" name="seminar-1-2" value="<?php echo $seminarResult[3] ?>"></td>
-            <td><input type="date" name="seminar-1-3" value="<?php echo $seminarResult[4] ?>"></td>
-            <td><input type="date" name="seminar-1-4" value="<?php echo $seminarResult[5] ?>"></td>
+            <td><input class = "form-control"  type="text" name="seminar-1-1" value="<?php echo $seminarResult[2] ?>"></td>
+            <td><input class = "form-control"  type="text" name="seminar-1-2" value="<?php echo $seminarResult[3] ?>"></td>
+            <td><input class = "form-control"  type="date" name="seminar-1-3" value="<?php echo $seminarResult[4] ?>"></td>
+            <td><input class = "form-control"  type="date" name="seminar-1-4" value="<?php echo $seminarResult[5] ?>"></td>
             <?php addDropDown(1,$seminarResult[6],'seminar');?>
-            <td><input type="file" name="seminar-1-6" value="<?php echo $seminarResult[7] ?>"></td>
+            <td><input class = "form-control"  type="file" name="seminar-1-6" value="<?php echo $seminarResult[7] ?>"></td>
         </tr>
         <?php
             for($otherseminar = 2; $otherseminar <= $noOfseminar ; $otherseminar++){
                 $seminarResult = mysql_fetch_array($seminarQuery);
                echo "<tr>";
                echo "<td>", $seminarResult[1] ,"</td>";
-                echo "<td><input type='text' name='seminar-",$otherseminar,"-1' value='", $seminarResult[2] ,"'></td>";
-                echo "<td><input type='text' name='seminar-",$otherseminar,"-2' value='", $seminarResult[3] ,"'></td>";
-                echo "<td><input type='date' name='seminar-",$otherseminar,"-3' value='", $seminarResult[4] ,"'></td>";
-                echo "<td><input type='date' name='seminar-",$otherseminar,"-4' value='", $seminarResult[5] ,"'></td>";
+                echo "<td><input class = 'form-control'  type='text' name='seminar-",$otherseminar,"-1' value='", $seminarResult[2] ,"'></td>";
+                echo "<td><input class = 'form-control'  type='text' name='seminar-",$otherseminar,"-2' value='", $seminarResult[3] ,"'></td>";
+                echo "<td><input class = 'form-control'  type='date' name='seminar-",$otherseminar,"-3' value='", $seminarResult[4] ,"'></td>";
+                echo "<td><input class = 'form-control'  type='date' name='seminar-",$otherseminar,"-4' value='", $seminarResult[5] ,"'></td>";
                 addDropDown($otherseminar,$seminarResult[6],'seminar');
-                echo "<td><input type='file' name='seminar-",$otherseminar,"-6' value='", $seminarResult[7] ,"'></td>";
+                echo "<td><input class = 'form-control'  type='file' name='seminar-",$otherseminar,"-6' value='", $seminarResult[7] ,"'></td>";
                 echo "</tr>";
             }
         ?>
@@ -146,7 +145,7 @@
          <?php 
         $isteResult = array("","","","","","","","","","","");
         $noOfiste = 1;
-        $isteQuery = mysql_query("select * from activity where enrollment = $user order by sr_no");
+        $isteQuery = mysql_query("select * from activity where enrollment = $user and event = 'ISTE' order by sr_no");
         if(($noOfiste = mysql_num_rows($isteQuery))!=0){
             $isteResult = mysql_fetch_array($isteQuery);
         }
@@ -157,26 +156,26 @@
 
         <tr>
             <td>1</td>
-            <td><input class="table table-bordered" type="text" name="iste-1-1" value="<?php echo $isteResult[2] ?>"></td>
-            <td><input class="table table-bordered" type="text" name="iste-1-2" value="<?php echo $isteResult[3] ?>"></td>
-            <td><input class="table table-bordered" type="date" name="iste-1-3" value="<?php echo $isteResult[4] ?>"></td>
-            <td><input class="table table-bordered" type="date" name="iste-1-4" value="<?php echo $isteResult[5] ?>"></td>
+            <td><input class = "form-control"  type="text" name="iste-1-1" value="<?php echo $isteResult[2] ?>"></td>
+            <td><input class = "form-control"  type="text" name="iste-1-2" value="<?php echo $isteResult[3] ?>"></td>
+            <td><input class = "form-control"  type="date" name="iste-1-3" value="<?php echo $isteResult[4] ?>"></td>
+            <td><input class = "form-control"  type="date" name="iste-1-4" value="<?php echo $isteResult[5] ?>"></td>
             <?php addDropDown(1,$isteResult[6],'iste');?>
-            <td><input type="file" name="iste-1-6" value="<?php echo $isteResult[7] ?>"></td>
-            <td><input type="text" name="iste-1-7" value="<?php echo $isteResult[8] ?>"></td>
+            <td><input class = "form-control"  type="file" name="iste-1-6" value="<?php echo $isteResult[7] ?>"></td>
+            <td><input class = "form-control"  type="text" name="iste-1-7" value="<?php echo $isteResult[8] ?>"></td>
         </tr>
         <?php
             for($otheriste = 2; $otheriste <= $noOfiste ; $otheriste++){
                 $isteResult = mysql_fetch_array($isteQuery);
                echo "<tr>";
                echo "<td>", $isteResult[1] ,"</td>";
-                echo "<td><input type='text' name='iste-",$otheriste,"-1' value='", $isteResult[2] ,"'></td>";
-                echo "<td><input type='text' name='iste-",$otheriste,"-2' value='", $isteResult[3] ,"'></td>";
-                echo "<td><input type='date' name='iste-",$otheriste,"-3' value='", $isteResult[4] ,"'></td>";
-                echo "<td><input type='date' name='iste-",$otheriste,"-4' value='", $isteResult[5] ,"'></td>";
+                echo "<td><input class = 'form-control'  type='text' name='iste-",$otheriste,"-1' value='", $isteResult[2] ,"'></td>";
+                echo "<td><input class = 'form-control'  type='text' name='iste-",$otheriste,"-2' value='", $isteResult[3] ,"'></td>";
+                echo "<td><input class = 'form-control'  type='date' name='iste-",$otheriste,"-3' value='", $isteResult[4] ,"'></td>";
+                echo "<td><input class = 'form-control'  type='date' name='iste-",$otheriste,"-4' value='", $isteResult[5] ,"'></td>";
                 addDropDown($otheriste,$isteResult[6],'iste');
-                echo "<td><input type='file' name='iste-",$otheriste,"-6' value='", $isteResult[7] ,"'></td>";
-                echo "<td><input type='text' name='iste-",$otheriste,"-7' value='", $isteResult[8] ,"'></td>";
+                echo "<td><input class = 'form-control'  type='file' name='iste-",$otheriste,"-6' value='", $isteResult[7] ,"'></td>";
+                echo "<td><input class = 'form-control'  type='text' name='iste-",$otheriste,"-7' value='", $isteResult[8] ,"'></td>";
                 echo "</tr>";
             }
         ?>
@@ -208,7 +207,7 @@
          <?php 
         $ieResult = array("","","","","","","","","","","");
         $noOfie = 1;
-        $ieQuery = mysql_query("select * from activity where enrollment = $user order by sr_no");
+        $ieQuery = mysql_query("select * from activity where enrollment = $user and event = 'IE' order by sr_no");
         if(($noOfie = mysql_num_rows($ieQuery))!=0){
             $ieResult = mysql_fetch_array($ieQuery);
         }
@@ -219,26 +218,26 @@
 
         <tr>
             <td>1</td>
-            <td><input type="text" name="ie-1-1" value="<?php echo $ieResult[2] ?>"></td>
-            <td><input type="text" name="ie-1-2" value="<?php echo $ieResult[3] ?>"></td>
-            <td><input type="date" name="ie-1-3" value="<?php echo $ieResult[4] ?>"></td>
-            <td><input type="date" name="ie-1-4" value="<?php echo $ieResult[5] ?>"></td>
+            <td><input class = "form-control"  type="text" name="ie-1-1" value="<?php echo $ieResult[2] ?>"></td>
+            <td><input class = "form-control"  type="text" name="ie-1-2" value="<?php echo $ieResult[3] ?>"></td>
+            <td><input class = "form-control"  type="date" name="ie-1-3" value="<?php echo $ieResult[4] ?>"></td>
+            <td><input class = "form-control"  type="date" name="ie-1-4" value="<?php echo $ieResult[5] ?>"></td>
             <?php addDropDown(1,$ieResult[6],'ie');?>
-            <td><input type="file" name="ie-1-6" value="<?php echo $ieResult[7] ?>"></td>
-            <td><input type="text" name="ie-1-7" value="<?php echo $ieResult[8] ?>"></td>
+            <td><input class = "form-control"  type="file" name="ie-1-6" value="<?php echo $ieResult[7] ?>"></td>
+            <td><input class = "form-control"  type="text" name="ie-1-7" value="<?php echo $ieResult[8] ?>"></td>
         </tr>
         <?php
             for($otherie = 2; $otherie <= $noOfie ; $otherie++){
                 $ieResult = mysql_fetch_array($ieQuery);
                echo "<tr>";
                echo "<td>", $ieResult[1] ,"</td>";
-                echo "<td><input type='text' name='ie-",$otherie,"-1' value='", $ieResult[2] ,"'></td>";
-                echo "<td><input type='text' name='ie-",$otherie,"-2' value='", $ieResult[3] ,"'></td>";
-                echo "<td><input type='date' name='ie-",$otherie,"-3' value='", $ieResult[4] ,"'></td>";
-                echo "<td><input type='date' name='ie-",$otherie,"-4' value='", $ieResult[5] ,"'></td>";
+                echo "<td><input class = 'form-control'  type='text' name='ie-",$otherie,"-1' value='", $ieResult[2] ,"'></td>";
+                echo "<td><input class = 'form-control'  type='text' name='ie-",$otherie,"-2' value='", $ieResult[3] ,"'></td>";
+                echo "<td><input class = 'form-control'  type='date' name='ie-",$otherie,"-3' value='", $ieResult[4] ,"'></td>";
+                echo "<td><input class = 'form-control'  type='date' name='ie-",$otherie,"-4' value='", $ieResult[5] ,"'></td>";
                 addDropDown($otherie,$ieResult[6],'ie');
-                echo "<td><input type='file' name='ie-",$otherie,"-6' value='", $ieResult[7] ,"'></td>";
-                echo "<td><input type='text' name='ie-",$otherie,"-7' value='", $ieResult[8] ,"'></td>";
+                echo "<td><input class = 'form-control'  type='file' name='ie-",$otherie,"-6' value='", $ieResult[7] ,"'></td>";
+                echo "<td><input class = 'form-control'  type='text' name='ie-",$otherie,"-7' value='", $ieResult[8] ,"'></td>";
                 echo "</tr>";
             }
         ?>
@@ -271,7 +270,7 @@
          <?php 
         $sportResult = array("","","","","","","","","","","");
         $noOfsport = 1;
-        $sportQuery = mysql_query("select * from activity where enrollment = $user order by sr_no");
+        $sportQuery = mysql_query("select * from activity where enrollment = $user and event = 'Sport' order by sr_no");
         if(($noOfsport = mysql_num_rows($sportQuery))!=0){
             $sportResult = mysql_fetch_array($sportQuery);
         }
@@ -282,26 +281,26 @@
 
         <tr>
             <td>1</td>
-            <td><input type="text" name="sport-1-1" value="<?php echo $sportResult[2] ?>"></td>
-            <td><input type="text" name="sport-1-2" value="<?php echo $sportResult[3] ?>"></td>
-            <td><input type="date" name="sport-1-3" value="<?php echo $sportResult[4] ?>"></td>
-            <td><input type="date" name="sport-1-4" value="<?php echo $sportResult[5] ?>"></td>
+            <td><input class = "form-control"  type="text" name="sport-1-1" value="<?php echo $sportResult[2] ?>"></td>
+            <td><input class = "form-control"  type="text" name="sport-1-2" value="<?php echo $sportResult[3] ?>"></td>
+            <td><input class = "form-control"  type="date" name="sport-1-3" value="<?php echo $sportResult[4] ?>"></td>
+            <td><input class = "form-control"  type="date" name="sport-1-4" value="<?php echo $sportResult[5] ?>"></td>
             <?php addDropDown(1,$sportResult[6],'sport');?>
-            <td><input type="file" name="sport-1-6" value="<?php echo $sportResult[7] ?>"></td>
-            <td><input type="text" name="sport-1-7" value="<?php echo $sportResult[8] ?>"></td>
+            <td><input class = "form-control"  type="file" name="sport-1-6" value="<?php echo $sportResult[7] ?>"></td>
+            <td><input class = "form-control"  type="text" name="sport-1-7" value="<?php echo $sportResult[8] ?>"></td>
         </tr>
         <?php
             for($othersport = 2; $othersport <= $noOfsport ; $othersport++){
                 $sportResult = mysql_fetch_array($sportQuery);
                echo "<tr>";
                echo "<td>", $sportResult[1] ,"</td>";
-                echo "<td><input type='text' name='sport-",$othersport,"-1' value='", $sportResult[2] ,"'></td>";
-                echo "<td><input type='text' name='sport-",$othersport,"-2' value='", $sportResult[3] ,"'></td>";
-                echo "<td><input type='date' name='sport-",$othersport,"-3' value='", $sportResult[4] ,"'></td>";
-                echo "<td><input type='date' name='sport-",$othersport,"-4' value='", $sportResult[5] ,"'></td>";
+                echo "<td><input class = 'form-control'  type='text' name='sport-",$othersport,"-1' value='", $sportResult[2] ,"'></td>";
+                echo "<td><input class = 'form-control'  type='text' name='sport-",$othersport,"-2' value='", $sportResult[3] ,"'></td>";
+                echo "<td><input class = 'form-control'  type='date' name='sport-",$othersport,"-3' value='", $sportResult[4] ,"'></td>";
+                echo "<td><input class = 'form-control'  type='date' name='sport-",$othersport,"-4' value='", $sportResult[5] ,"'></td>";
                 addDropDown($othersport,$sportResult[6],'sport');
-                echo "<td><input type='file' name='sport-",$othersport,"-6' value='", $sportResult[7] ,"'></td>";
-                echo "<td><input type='text' name='sport-",$othersport,"-7' value='", $sportResult[8] ,"'></td>";
+                echo "<td><input class = 'form-control'  type='file' name='sport-",$othersport,"-6' value='", $sportResult[7] ,"'></td>";
+                echo "<td><input class = 'form-control'  type='text' name='sport-",$othersport,"-7' value='", $sportResult[8] ,"'></td>";
                 echo "</tr>";
             }
         ?>
@@ -334,7 +333,7 @@
          <?php 
         $eventResult = array("","","","","","","","","","","");
         $noOfevent = 1;
-        $eventQuery = mysql_query("select * from activity where enrollment = $user order by sr_no");
+        $eventQuery = mysql_query("select * from activity where enrollment = $user and event = 'Event' order by sr_no");
         if(($noOfevent = mysql_num_rows($eventQuery))!=0){
             $eventResult = mysql_fetch_array($eventQuery);
         }
@@ -345,26 +344,26 @@
 
         <tr>
             <td>1</td>
-            <td><input type="text" name="event-1-1" value="<?php echo $eventResult[2] ?>"></td>
-            <td><input type="text" name="event-1-2" value="<?php echo $eventResult[3] ?>"></td>
-            <td><input type="date" name="event-1-3" value="<?php echo $eventResult[4] ?>"></td>
-            <td><input type="date" name="event-1-4" value="<?php echo $eventResult[5] ?>"></td>
+            <td><input class = "form-control"  type="text" name="event-1-1" value="<?php echo $eventResult[2] ?>"></td>
+            <td><input class = "form-control"  type="text" name="event-1-2" value="<?php echo $eventResult[3] ?>"></td>
+            <td><input class = "form-control"  type="date" name="event-1-3" value="<?php echo $eventResult[4] ?>"></td>
+            <td><input class = "form-control"  type="date" name="event-1-4" value="<?php echo $eventResult[5] ?>"></td>
             <?php addDropDown(1,$eventResult[6],'event');?>
-            <td><input type="file" name="event-1-6" value="<?php echo $eventResult[7] ?>"></td>
-            <td><input type="text" name="event-1-7" value="<?php echo $eventResult[8] ?>"></td>
+            <td><input class = "form-control"  type="file" name="event-1-6" value="<?php echo $eventResult[7] ?>"></td>
+            <td><input class = "form-control"  type="text" name="event-1-7" value="<?php echo $eventResult[8] ?>"></td>
         </tr>
         <?php
             for($otherevent = 2; $otherevent <= $noOfevent ; $otherevent++){
                 $eventResult = mysql_fetch_array($eventQuery);
                echo "<tr>";
                echo "<td>", $eventResult[1] ,"</td>";
-                echo "<td><input type='text' name='event-",$otherevent,"-1' value='", $eventResult[2] ,"'></td>";
-                echo "<td><input type='text' name='event-",$otherevent,"-2' value='", $eventResult[3] ,"'></td>";
-                echo "<td><input type='date' name='event-",$otherevent,"-3' value='", $eventResult[4] ,"'></td>";
-                echo "<td><input type='date' name='event-",$otherevent,"-4' value='", $eventResult[5] ,"'></td>";
+                echo "<td><input class = 'form-control'  type='text' name='event-",$otherevent,"-1' value='", $eventResult[2] ,"'></td>";
+                echo "<td><input class = 'form-control'  type='text' name='event-",$otherevent,"-2' value='", $eventResult[3] ,"'></td>";
+                echo "<td><input class = 'form-control'  type='date' name='event-",$otherevent,"-3' value='", $eventResult[4] ,"'></td>";
+                echo "<td><input class = 'form-control'  type='date' name='event-",$otherevent,"-4' value='", $eventResult[5] ,"'></td>";
                 addDropDown($otherevent,$eventResult[6],'event');
-                echo "<td><input type='file' name='event-",$otherevent,"-6' value='", $eventResult[7] ,"'></td>";
-                echo "<td><input type='text' name='event-",$otherevent,"-7' value='", $eventResult[8] ,"'></td>";
+                echo "<td><input class = 'form-control'  type='file' name='event-",$otherevent,"-6' value='", $eventResult[7] ,"'></td>";
+                echo "<td><input class = 'form-control'  type='text' name='event-",$otherevent,"-7' value='", $eventResult[8] ,"'></td>";
                 echo "</tr>";
             }
         ?>
@@ -405,18 +404,18 @@
 
         <tr>
             <td>1</td>
-            <td><input type="text" name="journo-1-1" value="<?php echo $journalResult[2] ?>"></td>
-            <td><input type="text" name="journo-1-2" value="<?php echo $journalResult[3] ?>"></td>
-            <td><input type="date" name="journo-1-3" value="<?php echo $journalResult[4] ?>"></td>
+            <td><input class = "form-control"  type="text" name="journo-1-1" value="<?php echo $journalResult[2] ?>"></td>
+            <td><input class = "form-control"  type="text" name="journo-1-2" value="<?php echo $journalResult[3] ?>"></td>
+            <td><input class = "form-control"  type="date" name="journo-1-3" value="<?php echo $journalResult[4] ?>"></td>
         </tr>
         <?php
             for($otherJourno = 2; $otherJourno <= $noOfJournal ; $otherJourno++){
                 $journalResult = mysql_fetch_array($journalQuery);
                echo "<tr>";
                echo "<td>", $journalResult[1] ,"</td>";
-                echo "<td><input type='text' name='journo-",$otherJourno,"-1' value='", $journalResult[2] ,"'></td>";
-                echo "<td><input type='text' name='journo-",$otherJourno,"-2' value='", $journalResult[3] ,"'></td>";
-                echo "<td><input type='date' name='journo-",$otherJourno,"-3' value='", $journalResult[4] ,"'></td>";
+                echo "<td><input class = 'form-control'  type='text' name='journo-",$otherJourno,"-1' value='", $journalResult[2] ,"'></td>";
+                echo "<td><input class = 'form-control'  type='text' name='journo-",$otherJourno,"-2' value='", $journalResult[3] ,"'></td>";
+                echo "<td><input class = 'form-control'  type='date' name='journo-",$otherJourno,"-3' value='", $journalResult[4] ,"'></td>";
                 echo "</tr>";
             }
         ?>
@@ -459,20 +458,20 @@
 
         <tr>
             <td>1</td>
-            <td><input type="text" name="comp-1-0" value="<?php echo $competitiveResult[2] ?>"></td>
-            <td><input type="text" name="comp-1-1" value="<?php echo $competitiveResult[3] ?>"></td>
-            <td><input type="text" name="comp-1-2" value="<?php echo $competitiveResult[4] ?>"></td>
-            <td><input type="text" name="comp-1-3" value="<?php echo $competitiveResult[5] ?>"></td>
+            <td><input class = "form-control"  type="text" name="comp-1-0" value="<?php echo $competitiveResult[2] ?>"></td>
+            <td><input class = "form-control"  type="text" name="comp-1-1" value="<?php echo $competitiveResult[3] ?>"></td>
+            <td><input class = "form-control"  type="text" name="comp-1-2" value="<?php echo $competitiveResult[4] ?>"></td>
+            <td><input class = "form-control"  type="text" name="comp-1-3" value="<?php echo $competitiveResult[5] ?>"></td>
         </tr>
         <?php
             for($otherJourno = 2; $otherJourno <= $noOfCompetitive ; $otherJourno++){
                 $competitiveResult = mysql_fetch_array($competitiveQuery);
                echo "<tr>";
                echo "<td>", $competitiveResult[1] ,"</td>";
-                echo "<td><input type='text' name='comp-",$otherJourno,"-0' value='", $competitiveResult[2] ,"'></td>";
-                echo "<td><input type='text' name='comp-",$otherJourno,"-1' value='", $competitiveResult[3] ,"'></td>";
-                echo "<td><input type='text' name='comp-",$otherJourno,"-2' value='", $competitiveResult[4] ,"'></td>";
-                echo "<td><input type='text' name='comp-",$otherJourno,"-3' value='", $competitiveResult[5] ,"'></td>";
+                echo "<td><input class = 'form-control'  type='text' name='comp-",$otherJourno,"-0' value='", $competitiveResult[2] ,"'></td>";
+                echo "<td><input class = 'form-control'  type='text' name='comp-",$otherJourno,"-1' value='", $competitiveResult[3] ,"'></td>";
+                echo "<td><input class = 'form-control'  type='text' name='comp-",$otherJourno,"-2' value='", $competitiveResult[4] ,"'></td>";
+                echo "<td><input class = 'form-control'  type='text' name='comp-",$otherJourno,"-3' value='", $competitiveResult[5] ,"'></td>";
                 echo "</tr>";
             }
         ?>
@@ -515,9 +514,9 @@
 
         <tr>
             <td>1</td>
-            <td><input type="text" name="job-1-1" value="<?php echo $jobResult[2] ?>"></td>
-            <td><input type="text" name="job-1-2" value="<?php echo $jobResult[3] ?>"></td>
-            <td><input type="text" name="job-1-3" value="<?php echo $jobResult[4] ?>"></td>
+            <td><input class = "form-control"  type="text" name="job-1-1" value="<?php echo $jobResult[2] ?>"></td>
+            <td><input class = "form-control"  type="text" name="job-1-2" value="<?php echo $jobResult[3] ?>"></td>
+            <td><input class = "form-control"  type="text" name="job-1-3" value="<?php echo $jobResult[4] ?>"></td>
         </tr>
 
         <?php
@@ -525,8 +524,8 @@
                 $jobResult = mysql_fetch_array($jobQuery);
                echo "<tr>";
                echo "<td>", $jobResult[1] ,"</td>";
-                echo "<td><input type='text' name='job-",$otherJourno,"-1' value='", $jobResult[2] ,"'></td>";
-                echo "<td><input type='text' name='job-",$otherJourno,"-2' value='", $jobResult[3] ,"'></td>";
+                echo "<td><input class = 'form-control'  type='text' name='job-",$otherJourno,"-1' value='", $jobResult[2] ,"'></td>";
+                echo "<td><input class = 'form-control'  type='text' name='job-",$otherJourno,"-2' value='", $jobResult[3] ,"'></td>";
                 echo "<td><input type='text' name='job-",$otherJourno,"-3' value='", $jobResult[4] ,"'></td>";
                 echo "</tr>";
             }
@@ -633,7 +632,7 @@
         var newRow = document.createElement("tr");
 
         var srnoCol = document.createElement("td");
-        var srno = document.createTextNode(seminarCount);class="table table-bordered"
+        var srno = document.createTextNode(seminarCount);
 
         srnoCol.appendChild(srno);
         newRow.appendChild(srnoCol);
@@ -669,6 +668,7 @@
                 }
             }
             inputTag.setAttribute("name", "seminar-" + seminarCount + "-" + j);
+            inputTag.setAttribute("class", "form-control");
 
             newCol.appendChild(inputTag);
             newRow.appendChild(newCol);
@@ -957,7 +957,7 @@
                 }
 
                 if (field1.value == "" && field2.value == "" && field3.value == "" &&
-                    field4.value == "" &&  field6.value == "") {
+                    field4.value == "" && field6.value == "") {
                     if (act == 0)
                         LeftEmpty = 1;
                     else if (field7.value == "")

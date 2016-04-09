@@ -31,7 +31,7 @@
                 else
                     $col7 = "";
                 
-                if($col1 =="" && $col2 ==""){
+                if(!($col1 =="" && $col2 =="")){
                     $insertQr = "insert into activity values( 
                                 $user,$givenRow,
                                 '$col1','$col2','$col3','$col4','$col5','$col6','$col7','$typeArray[$act]')

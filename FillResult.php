@@ -62,7 +62,8 @@
 
     <h2 align="center"> Result </h2>
      <?php
-        for($i=1;$i<=$userDetail["last_result_sem"];$i++){
+        for($i=1;$i<=8;$i++){
+            if($userDetail["Sem".$i]==1){
             $tableId = "Sem".$i;
             echo "<table id=$tableId border='2' class='table table-bordered text-center'>";
             echo "            <tr align='center' > ";
@@ -98,14 +99,16 @@
             }
 
             echo "</table>";
+            }
         }
     ?>
 
    
 
-    <form action="Marksheet.html" method="get">
+    <form action="Marksheet.php" method="post" onsubmit="return getSem()">
+        <input type="hidden" id="semNo" name="sem"/>
         <button class="btn btn-lg btn-primary btn-block" type="submit" >
-            Add Sem <?php  $ans = $userDetail["last_result_sem"] + 1; echo $ans; ?> Result
+            Add/Edit Result
         </button>
     </form>
     <div>
@@ -119,13 +122,31 @@
                 </h2>
             </p>
             <br>
-
-            <button  class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
-            <button class="btn btn-lg btn-primary btn-block" type="reset">Reset</button>
         </form>
     </div>
 
 
 </body>
+
+<script>
+    function getSem() {
+        var semField = document.getElementById("semNo");
+        var no = prompt("Enter Sem No", 1);
+        if (no != null) {
+            if (no > 0 && no < 9) {
+                semField.value = no;
+                return true;
+            }
+            else {
+                alert("Enter Valid Sem No");
+                return false;
+            }
+        }
+        else {
+            alert("Please enter Sem No");
+            return false;
+        }
+    }
+</script>
 
 </html>
