@@ -18,22 +18,28 @@
 
         if(mysql_num_rows($qrry)){
        
-            $ans = mysql_fetch_assoc($qrry);
+            $userDetail = mysql_fetch_assoc($qrry);
 
-            if($pass==$ans["password"]){
+            if($pass==$userDetail["password"]){
                 session_start();
-                $_SESSION["user"] = $user;
-                header("Location: FillResult.php");
-                exit();
+                if($userDetail["admin"] == 1){
+                    header("Location: adminPanel.html");
+                    exit();                    
+                }
+                else{
+                    $_SESSION["user"] = $user;
+                    header("Location: FillResult.php");
+                    exit();
+                }
             }
             else{
-                $report["result"]="Not Correct Password";
-                echo json_encode($report);
+                echo "<h4>Password Not Correct!</h4>";
+                include("index.html");
             }            
         }
         else{
-            $report["result"]="User Not Found";
-            echo json_encode($report);
+            echo "<h4>User Not Found!</h4>";
+            include("index.html");
         }
     }
 
