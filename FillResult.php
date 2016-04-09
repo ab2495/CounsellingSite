@@ -64,9 +64,9 @@
      <?php
         for($i=1;$i<=$userDetail["last_result_sem"];$i++){
             $tableId = "Sem".$i;
-            echo "<table id=$tableId border='2'>";
-            echo "            <tr> ";
-            echo "            <th rowspan='2'>Sr No</th> ";
+            echo "<table id=$tableId border='2' class='table table-bordered text-center'>";
+            echo "            <tr align='center' > ";
+            echo "                <th rowspan='2'>Sr No</th> ";
             echo "                <th rowspan='2'>Subject Code</th>";
             echo "                <th rowspan='2'>Subject Name</th>";
             echo "                <th rowspan='2'>Grade</th>";
