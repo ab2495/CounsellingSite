@@ -43,6 +43,7 @@
 
     <!-- Bootstrap core CSS -->
     <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href="ActivityForm.css" rel="stylesheet">
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <!--<link href="./css/ie10-viewport-bug-workaround.css" rel="stylesheet">-->
@@ -156,10 +157,10 @@
 
         <tr>
             <td>1</td>
-            <td><input type="text" name="iste-1-1" value="<?php echo $isteResult[2] ?>"></td>
-            <td><input type="text" name="iste-1-2" value="<?php echo $isteResult[3] ?>"></td>
-            <td><input type="date" name="iste-1-3" value="<?php echo $isteResult[4] ?>"></td>
-            <td><input type="date" name="iste-1-4" value="<?php echo $isteResult[5] ?>"></td>
+            <td><input class="table table-bordered" type="text" name="iste-1-1" value="<?php echo $isteResult[2] ?>"></td>
+            <td><input class="table table-bordered" type="text" name="iste-1-2" value="<?php echo $isteResult[3] ?>"></td>
+            <td><input class="table table-bordered" type="date" name="iste-1-3" value="<?php echo $isteResult[4] ?>"></td>
+            <td><input class="table table-bordered" type="date" name="iste-1-4" value="<?php echo $isteResult[5] ?>"></td>
             <?php addDropDown(1,$isteResult[6],'iste');?>
             <td><input type="file" name="iste-1-6" value="<?php echo $isteResult[7] ?>"></td>
             <td><input type="text" name="iste-1-7" value="<?php echo $isteResult[8] ?>"></td>
@@ -632,7 +633,7 @@
         var newRow = document.createElement("tr");
 
         var srnoCol = document.createElement("td");
-        var srno = document.createTextNode(seminarCount);
+        var srno = document.createTextNode(seminarCount);class="table table-bordered"
 
         srnoCol.appendChild(srno);
         newRow.appendChild(srnoCol);
