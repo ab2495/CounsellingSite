@@ -24,10 +24,13 @@
                 $col3 = $_POST[$tagName[$act]."-".$givenRow."-3"];
                 $col4 = $_POST[$tagName[$act]."-".$givenRow."-4"];
                 $col5 = $_POST[$tagName[$act]."-".$givenRow."-5"];
-                $col6 = $_POST[$tagName[$act]."-".$givenRow."-6"];
+                if(isset($_FILES[$tagName[$act]."-".$givenRow."-6"]))
+                    $col6 = "Done";
+                else
+                    $col6 = "Left";
                 
                 if($act != 0)
-                    $col7 = $tagName[$act]."-"+$givenRow."-7";
+                    $col7 = $_POST[$tagName[$act]."-".$givenRow."-7"];
                 else
                     $col7 = "";
                 
@@ -47,6 +50,8 @@
             
                     $qrry = mysql_query($insertQr);
                     echo mysql_error() , "<br>";
+
+                    saveCertificate($tagName[$act]."-".$givenRow);
                 }
             }
         }
@@ -124,7 +129,24 @@
             }
         }
 
-         header("Location: FillResult.php");
+        header("Location: FillResult.php");
         exit();
+
+        function saveCertificate($name){
+        
+            $target_dir = "certificates/".$_SESSION["user"]."/";
+            $target_file = $target_dir . $name . "." .pathinfo($_FILES[$name."-6"]["name"],PATHINFO_EXTENSION);
+            
+            $file_ext=strtolower(end(explode('.',$_FILES[$name."-6"]['name'])));
+      
+            $expensions= array("jpeg","jpg","png","pdf");
+      
+            if(in_array($file_ext,$expensions)=== false){
+                   echo "extension not allowed, please choose a JPEG or PNG or PDF file.";
+            }
+            else{
+                move_uploaded_file($_FILES[$name."-6"]['tmp_name'],$target_file);
+            }
+        }
 
 ?>

@@ -60,7 +60,7 @@
 </head>
 <body>
 <h1 align="center"> Student Activity Form</h1>
-<form id="ActivityForm" method="post" action="saveActivityForm.php" onsubmit=" return addCountersAndCheck()">
+<form id="ActivityForm" enctype="multipart/form-data" method="post" action="saveActivityForm.php" onsubmit=" return addCountersAndCheck()">
 <div>
 
     <p>

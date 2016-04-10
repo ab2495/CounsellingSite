@@ -30,6 +30,7 @@
                 echo json_encode($response) , mysql_error();
             }
             else{
+                mkdir("certificates/".$user);
                 header("Location: index.html");
                 exit();
             }

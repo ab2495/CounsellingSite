@@ -45,7 +45,6 @@
     <h1 align="center">
          BVM Counselling Site
     </h1>
-
     <?php
         $qr="select * from user where enrollment = '$user'";
         $qrry = mysql_query($qr);
@@ -127,6 +126,15 @@
 
 
 </body>
+
+<?php
+    function signout(){
+        session_unset(); 
+        session_destroy() ;
+        header("Location: index.html");
+        exit();
+    }
+?>
 
 <script>
     function getSem() {
