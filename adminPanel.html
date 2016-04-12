@@ -34,12 +34,14 @@
             Admin Panel
         </h1>
 
-        <table align="center">
+        <button class="btn1 btn-lg btn-primary btn-block" type="submit">Sign Out</button>
         <form method="post" action="adminPanel.php" onsubmit="return check()">
-            <td>
-            <p align="center" >
+            <table align="center">
+
+            <h3><p align="center">
             Enter Enrollment Number:
             </p>
+            </h3>
             <td>
                 <input align="center" type="number" name="enrollment" id="enroll"/>
             </td>
@@ -47,8 +49,8 @@
             <td>
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Find</button>
             </td>
+             </table>
         </form>
-        </table>
     </body>
     <script>
         function check() {
