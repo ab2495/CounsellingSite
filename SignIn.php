@@ -23,7 +23,7 @@
             if($pass==$userDetail["password"]){
                 session_start();
                 if($userDetail["admin"] == 1){
-                    header("Location: adminPanel.html");
+                    header("Location: adminPanel.php");
                     exit();                    
                 }
                 else{

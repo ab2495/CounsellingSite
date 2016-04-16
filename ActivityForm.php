@@ -64,7 +64,7 @@
 <div>
 
     <p>
-        <h4>Seminar/Workshop Detail</h4>
+        <h3>Seminar/Workshop Detail</h3>
     </p>
     <table class="table table-bordered" id="seminarTable">
         <tr>
@@ -123,7 +123,7 @@
     <br>
 
     <p>
-        <h4>ISTE Student Chapter Event Detail</h4>
+        <h3>ISTE Student Chapter Event Detail</h3>
     </p>
     <table class="table table-bordered" id="isteTable">
         <tr>
@@ -185,7 +185,7 @@
     <br>
 
     <p>
-        <h4>IE/ISTE Convention Event Detail</h4>
+        <h3>IE/ISTE Convention Event Detail</h3>
     </p>
     <table class="table table-bordered" id="ieTable">
         <tr>
@@ -248,7 +248,7 @@
 
 
     <p>
-        <h4>Sports Detail</h4>
+        <h3>Sports Detail</h3>
     </p>
     <table class="table table-bordered" id="sportTable">
         <tr>
@@ -311,7 +311,7 @@
 
 
     <p>
-        <h4>Youth/Cultural/Technical/Festival Detail</h4>
+        <h3>Youth/Cultural/Technical/Festival Detail</h3>
     </p>
     <table class="table table-bordered" id="eventTable">
         <tr>
@@ -372,11 +372,8 @@
     </table>
     <br>
 
-
-    <p>
-        1).Have you published research paper in journal/conference?
-        If Yes give details.
-    </p>
+    <h3>Journal/Research Paper Publish</h3>
+    Have you published research paper in journal/conference?
     <table class="table table-bordered" id="journalTable">
         <tr>
             <th>Sr.No</th>
@@ -424,9 +421,8 @@
     </table>
     <br>
 
-    <p>
-        2)Details of Competitive Exam<br>
-    </p>
+    <h3>Competitve Exam</h3>
+     Details of Competitive Exam<br>
     <table class="table table-bordered" id="competitiveTable">
 
         <tr>
@@ -480,9 +476,8 @@
     <br>
 
     <p>
-        3.Placement<br><br>
-        a) Are you selected in campus interview?
-        If Yes give the details
+        <h3>Placement</h3>
+        Are you selected in campus interview?
     </p>
 
     <table class="table table-bordered text-center " id="jobTable">
@@ -534,6 +529,7 @@
     </table>
     <br>
 
+    <!--
     <p>
         <input type="checkbox" name="further_studies" value="true">
         b) Are you interested in further studies,if Yes mention in detail.
@@ -542,6 +538,7 @@
         <input type="checkbox" name="entrepreneur" value="true">
         c) Are you interested in becoming entrepreneur,if Yes give details.
     </p>
+    -->
 
     <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
 </form>

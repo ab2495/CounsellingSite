@@ -24,15 +24,24 @@
                 $col3 = $_POST[$tagName[$act]."-".$givenRow."-3"];
                 $col4 = $_POST[$tagName[$act]."-".$givenRow."-4"];
                 $col5 = $_POST[$tagName[$act]."-".$givenRow."-5"];
-                if(isset($_FILES[$tagName[$act]."-".$givenRow."-6"]))
-                    $col6 = "Done";
-                else
-                    $col6 = "Left";
+                $col6 = NULL;
                 
                 if($act != 0)
                     $col7 = $_POST[$tagName[$act]."-".$givenRow."-7"];
                 else
                     $col7 = "";
+
+                echo "insert into activity values( 
+                                $user,$givenRow,
+                                '$col1','$col2','$col3','$col4','$col5','$col6','$col7','$typeArray[$act]')
+                                on duplicate key update 
+                                title = '$col1' ,
+                                place = '$col2' ,
+                                start_date = '$col3' ,
+                                end_date = '$col4' ,
+                                level = '$col5' ,
+                                prize = '$col7' 
+                                ";
                 
                 if(!($col1 =="" && $col2 =="")){
                     $insertQr = "insert into activity values( 
@@ -44,7 +53,6 @@
                                 start_date = '$col3' ,
                                 end_date = '$col4' ,
                                 level = '$col5' ,
-                                certificate = '$col6' ,
                                 prize = '$col7' 
                                 ";
             
@@ -129,13 +137,15 @@
             }
         }
 
-        header("Location: FillResult.php");
-        exit();
+      //  header("Location: FillResult.php");
+       // exit();
 
         function saveCertificate($name){
         
-            $target_dir = "certificates/".$_SESSION["user"]."/";
-            $target_file = $target_dir . $name . "." .pathinfo($_FILES[$name."-6"]["name"],PATHINFO_EXTENSION);
+            $user =  $_SESSION["user"];
+            $target_dir = "certificates/".$user."/";
+            $fileNameWithExtension = $name . "." .pathinfo($_FILES[$name."-6"]["name"],PATHINFO_EXTENSION);
+            $target_file = $target_dir . $fileNameWithExtension;
             
             $file_ext=strtolower(end(explode('.',$_FILES[$name."-6"]['name'])));
       
@@ -146,6 +156,15 @@
             }
             else{
                 move_uploaded_file($_FILES[$name."-6"]['tmp_name'],$target_file);
+                $part = explode("-",$name);
+                
+                $sayCertificateDone = "UPDATE activity set 
+                                        certificate='$fileNameWithExtension'
+                                        where 
+                                        enrollment = $user
+                                        and sr_no = $part[1]
+                                        and event = '$part[0]'";
+                mysql_query($sayCertificateDone);
             }
         }
 
