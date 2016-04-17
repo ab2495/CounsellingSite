@@ -46,6 +46,7 @@
          BVM Counselling Site
     </h1>
     <form action="StudentProfile.php" method="post"><button type="submit">Profile</button></form>
+    <form action="logout.php" method="post"><button type="submit">Log Out</button></form>
     <?php
         $qr="select * from user where enrollment = '$user'";
         $qrry = mysql_query($qr);

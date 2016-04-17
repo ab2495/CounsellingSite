@@ -44,6 +44,7 @@
         <h1 align="center">
             Admin Panel
         </h1>
+        <form action="logout.php" method="post"><button type="submit">Log Out</button></form>
 
         <form method="post" action="adminPanelRedirect.php" onsubmit="return check()">
             <table align="center">
