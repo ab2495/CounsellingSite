@@ -9,6 +9,8 @@
         echo mysql_error();
 
     $user = $_SESSION["user"];
+    $userDetail = mysql_query("select * from user where enrollment = $user");
+    $userDetail = mysql_fetch_assoc($userDetail);
 
     function addDropDown($no,$selected,$type){
         echo "<td>";
@@ -529,16 +531,30 @@
     </table>
     <br>
 
-    <!--
+    
     <p>
-        <input type="checkbox" name="further_studies" value="true">
-        b) Are you interested in further studies,if Yes mention in detail.
+        <?php
+            if($userDetail["further_studies"] == 1){
+                echo "<input type='checkbox' name='further_studies' value='yes' checked>";
+            }
+            else{
+                echo "<input type='checkbox' name='further_studies' value='yes' >";
+            }
+        ?>
+         Are you interested in further studies,if Yes mention in detail.
     </p>
     <p>
-        <input type="checkbox" name="entrepreneur" value="true">
-        c) Are you interested in becoming entrepreneur,if Yes give details.
+        <?php
+            if($userDetail["entrepreneur"] == 1){
+                echo "<input type='checkbox' name='entrepreneur' value='yes' checked>";
+            }
+            else{
+                echo "<input type='checkbox' name='entrepreneur' value='yes' >";
+            }
+        ?>
+         Are you interested in becoming entrepreneur,if Yes give details.
     </p>
-    -->
+    
 
     <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
 </form>

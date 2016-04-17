@@ -12,6 +12,7 @@
    if(isset($_POST["user"]) && isset($_POST["pass"])){
         $user = $_POST["user"];
         $pass = $_POST["pass"];
+        $pass = md5($pass);
 
         $qr="select * from user where enrollment = '$user'";
         $qrry = mysql_query($qr);

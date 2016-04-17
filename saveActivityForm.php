@@ -31,18 +31,6 @@
                 else
                     $col7 = "";
 
-                echo "insert into activity values( 
-                                $user,$givenRow,
-                                '$col1','$col2','$col3','$col4','$col5','$col6','$col7','$typeArray[$act]')
-                                on duplicate key update 
-                                title = '$col1' ,
-                                place = '$col2' ,
-                                start_date = '$col3' ,
-                                end_date = '$col4' ,
-                                level = '$col5' ,
-                                prize = '$col7' 
-                                ";
-                
                 if(!($col1 =="" && $col2 =="")){
                     $insertQr = "insert into activity values( 
                                 $user,$givenRow,
@@ -136,9 +124,20 @@
                 echo mysql_error() , "<br>";
             }
         }
+        
+        $further = 0;
+        if(isset($_POST["further_studies"]) && $_POST["further_studies"] == "yes")
+            $further = 1;
 
-      //  header("Location: FillResult.php");
-       // exit();
+        $entrepreneur = 0;
+        if(isset($_POST["entrepreneur"]) && $_POST["entrepreneur"] == "yes")
+            $entrepreneur = 1;
+
+        $changeUser = mysql_query("update user set further_studies = $further , entrepreneur = $entrepreneur where enrollment = $user");
+        echo mysql_error();
+
+        header("Location: FillResult.php");
+        exit();
 
         function saveCertificate($name){
         

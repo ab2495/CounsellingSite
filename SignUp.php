@@ -13,7 +13,7 @@
     if(isset($_POST["enroll"]) && isset($_POST["email"]) && isset($_POST["name"]) && isset($_POST["password"])){
         $user = $_POST["enroll"];
         $mail = $_POST["email"];
-        $pass = $_POST["password"];
+        $pass = md5($_POST["password"]);
         $name = $_POST["name"];
 
         $test = mysql_query("select * from user where enrollment = '$user'");
