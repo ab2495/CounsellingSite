@@ -24,8 +24,9 @@
         }
         
         $sem = $_POST["sem"];
+        $emptyRowCount = 0;
 
-        for($i=1;$i<$noOfSubject;$i++){
+        for($i=1;$i<=$noOfSubject;$i++){
             $var1 = $_POST[$i."-0"];
             $var2 = $_POST[$i."-1"];
             $var3 = $_POST[$i."-2"];
@@ -50,22 +51,24 @@
                     echo mysql_error() , "error";
                 }
             }
+            else{
+                $emptyRowCount++;
+            }
 
         }
 
-        $colName = "Sem".$sem;
-        $updateLastSemInProfile = "update user set $colName = '1' where enrollment = '$user'";
-        $qrry = mysql_query($updateLastSemInProfile);
-        if(!$qrry){
-            echo mysql_error() , "error";
+        if($emptyRowCount != $noOfSubject){
+           $colName = "Sem".$sem;
+           $updateLastSemInProfile = "update user set $colName = '1' where enrollment = '$user'";
+            $qrry = mysql_query($updateLastSemInProfile);
+            if(!$qrry){
+                echo mysql_error() , "error";
+            }
         }
-
-        
-
     }
 
     mysql_close($conn);
 
     header("Location: FillResult.php");
-        exit();
+    exit();
 ?>

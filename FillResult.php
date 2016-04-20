@@ -40,13 +40,37 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+        <style>
+            ul#menu li {
+                display:inline;
+            }
+        </style>
 </head>
 <body>
     <h1 align="center">
          BVM Counselling Site
     </h1>
-    <form action="StudentProfile.php" method="post"><button type="submit">Profile</button></form>
-    <form action="logout.php" method="post"><button type="submit">Log Out</button></form>
+    <table style="float: right; margin-right: 10px">
+        <tr>
+        <td >
+            <form action="StudentProfile.php" method="post">
+                <button class="btn btn-primary" type="submit" style="margin-right: 10px">Profile</button>
+            </form>
+        </td>
+        <td>
+            <form action="logout.php" method="post">
+                <button type="submit" class="btn btn-primary" style="margin-right: 10px">Log Out</button>
+            </form>
+        </td>
+        <td>
+            <form action="ChangePassword.html" method="post">
+                <button type="submit" class="btn btn-primary">Change Password</button>
+            </form>
+        </td>
+        </tr>
+     </table>
+    <br>
     <?php
         $qr="select * from user where enrollment = '$user'";
         $qrry = mysql_query($qr);

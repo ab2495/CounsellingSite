@@ -50,7 +50,7 @@
 <body>
 
 <h1 align="center">BVM Counselling Site</h1>
-<form class="form-signin" action="saveStudentProfile.php" method="post">
+<form class="form-signin" action="saveStudentProfile.php" method="post" onsubmit="return check()">
     <h2 class="form-signin-heading">Enter Your Details</h2>
     <label  class="sr-only">Your Name</label>
     <input type="text" name="name" class="form-control" placeholder="Name" required autofocus value="<?php echo $userDetail["name"];?>">
@@ -87,8 +87,22 @@
     </textarea>
 
     <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
-
-
 </form>
 </body>
+<script>
+    function check() {
+        var form = document.forms[0];
+        var fno = form.father_no.value;
+        var no = form.no.value;
+        if (fno.length != 10) {
+            alert("Enter Proper Father's Number");
+            return false;
+        }
+        if (no.length != 10) {
+            alert("Enter Proper Mobile Number");
+            return false;
+        }
+        return true;
+    }
+</script>
 </html>

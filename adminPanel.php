@@ -44,8 +44,11 @@
         <h1 align="center">
             Admin Panel
         </h1>
-        <form action="logout.php" method="post"><button type="submit">Log Out</button></form>
-
+        <table>
+            <tr><td>
+                <form action="logout.php" method="post"><button class="btn btn-lg btn-primary btn-block" type="submit">Log Out</button></form>
+            </td></tr>
+        </table>
         <form method="post" action="adminPanelRedirect.php" onsubmit="return check()">
             <table align="center">
 
@@ -108,7 +111,6 @@
                                 echo "<td>$Result[4]</td>";
                                 echo "<td>$Result[5]</td>";
                                 echo "<td>$Result[6]</td>";
-                                echo "'/candidate/$Result[0]/$Result[7]'";
                                 echo "<td><a download href='certificates/$Result[0]/$Result[7]'>
                                         <img alt='Download Certificate' src='certificat/$Result[7]'></a></td>";
                                 echo "<td>$Result[8]</td>";
